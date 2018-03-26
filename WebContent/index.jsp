@@ -5,8 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>4C Knowledge</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1>4C Knowledge</h1>
+	<h1>4C knowledge</h1>
+	<a href = "register.jsp">home</a>
 </body>
 </html>
