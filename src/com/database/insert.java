@@ -22,11 +22,13 @@ public class insert extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("userName");
+		String age = request.getParameter("age");
+		String email = request.getParameter("email");
 		
 		Connection con = Dbconnect.connect();
 		PreparedStatement st = null;
 		
-		String sql = "insert into users values('"+userName+"')";
+		String sql = "insert into users values('"+userName+"','"+age+"','"+email+"')";
 		
 		try {
 			st = con.prepareStatement(sql);

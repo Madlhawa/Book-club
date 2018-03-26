@@ -1,0 +1,8 @@
+DATABASE-NAME		  AVAILABLE-TABLES            COLOMNS&DATATYPES
+bookClub			users			name varchar20
+							age int(3)
+							email varchar20 (PRIMARY)
+		
+			
+				
+		

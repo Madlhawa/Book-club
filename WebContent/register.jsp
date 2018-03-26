@@ -9,36 +9,11 @@
 <body>
 
 	<form method="post" action="insert" >
-		User name<input name="userName"/>
+		User name : <input name="userName"/><br><br>
+		Age : 		<input name="age"/><br><br>
+		Email : 	<input name="email"/><br><br>
 		<input type="submit">
-	</form>
-
-
-
-	
-	<%/*
-	String url = "jdbc:mysql://localhost/bookClub";
-	String user = "root";
-	String password = "";
-	
-	Connection con=null;
-	
-	try {
-		con=DriverManager.getConnection(url, user, password);
-		System.out.println("Connected!");
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		System.out.println("Cannot connect to DB");
-		e.printStackTrace();
-	}
-	
-	Statement st = con.createStatement();
-	
-	ResultSet rs;
-	
-	int i = st.executeUpdate("insert into users values('madhawa')");
-	out.println("registered");*/
-	%>
+	</form><br><br>
 	<a href = "index.jsp">home</a>
 </body>
 </html>
