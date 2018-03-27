@@ -9,9 +9,16 @@
 <body>
 
 	<form method="post" action="insert" >
-		User name : <input name="userName"/><br><br>
-		Age : 		<input name="age"/><br><br>
-		Email : 	<input name="email"/><br><br>
+		Firstname : <input name="firstName"/><br>
+		Lastname :	<input name="lastName"/><br>
+		Date of birth :	<input type="date" name="dob"><br>
+		E-mail : 	<input type="email" name="email"/><br>
+		Permenent address :<input name="pAddress"/><br>
+		Current address :<input name="cAddress"/><br>
+		Mobile :	<input name="mobile"/><br>
+		Telephone :	<input name="telephone"/><br>
+		Role :		<input name="role"/><br>
+		Interest :	<input name="interest"/><br>
 		<input type="submit">
 	</form><br><br>
 	<a href = "index.jsp">home</a>
