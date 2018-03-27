@@ -1,7 +1,15 @@
 DATABASE-NAME		  AVAILABLE-TABLES            COLOMNS&DATATYPES
-bookClub			users			name varchar20
-							age int(3)
+bookClub			users			firstname varchar20
+							lastName varchar(20)
+							dob date
 							email varchar20 (PRIMARY)
+							password vaechar(20)
+							pAddress varchar(50)
+							cAddress varchar(50)
+							mobile int(11)
+							telephone int(11)
+							role varchar(20)
+							interest varchar(100)
 		
 			
 				
