@@ -26,6 +26,8 @@ public class insert extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
+		String pw = request.getParameter("pw");
+		String pw1 = request.getParameter("pw1");
 		String dateFromForm = request.getParameter("dob");
 		String email = request.getParameter("email");
 		String pAddress = request.getParameter("pAddress");
@@ -34,23 +36,28 @@ public class insert extends HttpServlet {
 		String telephone = request.getParameter("telephone");
 		String role = request.getParameter("role");
 		String interest = request.getParameter("interest");
-	
-		System.out.println("dateget from the forn is "+dateFromForm);
-		Connection con = Dbconnect.connect();
-		PreparedStatement st = null;
 		
+		if(!(pw.equals(pw1))) {
+			request.setAttribute("msg", "pwdnotmatch");
+			request.getRequestDispatcher("/register.jsp").forward(request, response);
+		}else {
+			request.setAttribute("msg", "noerror");
+			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			Connection con = Dbconnect.connect();
+			PreparedStatement st = null;
 		
-		try {
-			Date dateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(dateFromForm);
-            java.sql.Date dob = new java.sql.Date(dateFormat.getTime());
-            
-			System.out.println("date after formatting is "+dob);
-			String sql = "insert into users values('"+firstName+"','"+lastName+"','"+dob+"','"+email+"','"+pAddress+"','"+cAddress+"','"+mobile+"','"+telephone+"','"+role+"','"+interest+"')";
-			st = con.prepareStatement(sql);
-			st.execute();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				Date dateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(dateFromForm);
+				java.sql.Date dob = new java.sql.Date(dateFormat.getTime());
+				
+				String sql = "insert into users values('"+firstName+"','"+lastName+"','"+dob+"','"+email+"','"+pAddress+"','"+cAddress+"','"+mobile+"','"+telephone+"','"+role+"','"+interest+"')";
+				st = con.prepareStatement(sql);
+				st.execute();
+				System.out.println("Data inserted successfully!");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
