@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>4C Knowledge</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<%@ page import="java.*" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 </head>
 <body>
 	<div id="navbar">	

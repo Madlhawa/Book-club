@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="style2.css">
 <%@ page import="java.*" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <title>Login</title>
 </head>
 <body>
@@ -42,7 +43,15 @@
 			<div id="main">
 			<br>
 			<h3>Join with us to enjoy.</h3>
-			<hr>		  		
+			<hr>	
+			<br>
+			<%//Saving data that recieving from the servlet to variables
+				String msg = (String)request.getAttribute("msg"); 
+		  		if(msg != null && !msg.isEmpty()){
+		  			if(msg.equals("loginFaild"))
+						out.println("<p  style=\"color:red;font-size:13px;\"> *Wrong Email or Password!.</p>");
+		  		}
+		  	%>	  		
 			<form name="form" method="post" action="login">
 				<table>
 					<tr>
