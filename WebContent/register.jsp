@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style2.css">
 <%@ page import="java.*" %>
 <script>
 	function validateForm()
@@ -28,28 +30,105 @@
 <title>Register</title>
 </head>
 <body>
-	<%/*/*Saving data that recieving from the servlet to variables
-		String msg = (String)request.getAttribute("msg"); 
-		  if(msg != null && !msg.isEmpty()){
-		  	if(msg.equals("pwdnotmatch"))
+	<div id="navbar">	
+	</div>
+		<div class="container">		
+			<ul class="navigationBar">
+				<div id="logoArea">
+					<li class="logo"><a href="index.html" style="font-family:logo;font-size:33px;">4Cknowledge</a></li>
+				</div>
+				<div id="navArea">
+					<li class="nav"><a class="active" href="index.html">Home</a></li>
+					<li class="nav"><a href="findAd.html">Find a Car</a></li>
+					<li class="nav"><a href="login.html">Register</a></li>
+					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
+					<li class="nav"><a href="aboutUs.html">About Us</a></li>
+					<li class="nav"><a href="contactUs.html">Contact Us</a></li>
+				</div>
+			</ul>
+		
+			
+			<br><br><br>
+			<img class="header" src="header/header.jpg" alt="Norway" width="1000" height="300">
+		
+			<br>
+		
+			<div id="basicSidebar">
+				<img src="gif/giphy.gif" width="360px" style="text-align:center;"><br>
+				<img src="gif/gifs.gif" width="360px" style="text-align:center;"><br>
+				<img src="gif/gif3.gif" width="360px" style="text-align:center;">
+				
+			</div>
+			<div id="main">
+			<br>
+			<h3>Join with us to enjoy.</h3>
+			<hr>
+			<td style="padding-top: 1px;">&nbsp;</td>
+			<h5>Already a Member? Login here&nbsp;&nbsp;&nbsp;<a href = "login.jsp"><input type="button" id="loginbtn" value="Login"></a></h5>
+			<%/*/*Saving data that recieving from the servlet to variables
+				String msg = (String)request.getAttribute("msg"); 
+		  		if(msg != null && !msg.isEmpty()){
+		  		if(msg.equals("pwdnotmatch"))
 				out.println("<p style=\"color:red\"> *Passwords doesn't match.</p>");
-		  }*/
-	%>
-	<form name="form" method="post" action="insert" onsubmit="return validateForm()">
-		Firstname : <input type="text" name="firstName" required/><br>
-		Lastname :	<input type="text" name="lastName" required/><br>
-		Password ; <input type="password" name="pw" id="pwd" required>
-		Retype-Password ; <input type="password" name="pw1" required>
-		E-mail : 	<input type="email" name="email"required/><br>
-		Date of birth :	<input type="date" name="dob" required><br>
-		Permenent address :<input type="text" name="pAddress"required/><br>
-		Current address :<input type="text" name="cAddress"/><br>
-		Mobile :	<input name="mobile" required/><br>
-		Telephone :	<input name="telephone" required/><br>
-	<!--Role :		<input type="text" name="role"/><br> -->
-		Interest :	<input type="text" name="interest"/><br>
-		<input class="btn" type="submit" value="Submit">
-	</form>
-	<a href = "index.jsp">home</a>
+		  		}*/%>
+		  		
+			<form name="form" method="post" action="insert" onsubmit="return validateForm()">
+				<table>
+					<tr>
+						<td>First Name</td>
+						<td><input type="text" name="firstName" required/></td> 
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td><input type="text" name="lastName" required/></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td><input type="password" name="pw" id="pwd" required></td>
+					</tr>
+					<tr>
+						<td>Retype-Password</td>
+						<td><input type="password" name="pw1" required></td>
+					</tr>
+					<tr>
+						<td>E-mail</td>
+						<td><input type="email" name="email"required/></td>
+					</tr>
+					<tr>
+						<td>Date of birth</td>
+						<td><input type="date" name="dob" required></td>
+					</tr>
+					<tr>
+						<td>Permanent address</td>
+						<td><input type="text" name="pAddress"required/></td>
+					</tr>
+					<tr>
+						<td>Current address</td>
+						<td><input type="text" name="cAddress"/></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input name="mobile" required/></td>
+					</tr>
+					<tr>
+						<td>Telephone</td>
+						<td><input name="telephone" required/></td>
+					</tr>
+					<tr>
+						<td>Interest</td>
+						<td><input type="text" name="interest"/></td>
+					</tr>
+				</table>
+				<input class="btn" type="submit" value="Submit">
+			</form>
+		</div>
+	</div>
+		
+	<footer id="footer" style="float:right; width:100%;">
+		<div class="container">
+			<br><br>
+			<p class="foot" style="margin-left:350px;">Copyright  © </p><p class="foot" style="font-family:'logo';"> 4Cknowledge</p><p class="foot"> , 2018 - All Right Reserved.</p>
+		</div>
+	</footer>
 </body>
 </html>

@@ -1,0 +1,27 @@
+		table
+		{
+			margin-left:124px;
+		}
+		td
+		{
+			text-align:left;
+		}
+		select
+		{
+			width:100%;
+		}
+		.btn
+		{
+			margin-left:124px;
+			height:40px;	
+			width:120px;
+			background-color:#078898;
+			border:0;
+			color:white;
+		}
+
+		.btn:hover
+		{
+			background-color:silver;
+			color:#078898;
+		}	
