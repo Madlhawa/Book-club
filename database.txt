@@ -12,8 +12,15 @@ bookClub			users			firstname varchar20
 							interest varchar(100)
 
 
-bookClub                        books			name
-							title
+bookClub                        books			bookId int
+							title vachar(30)
+							category varchar(30)
+							keywords varchar(20)
+							author varchar(50)
+							language varchar(20)
+							country varchar(20)
+							publisher varchar(50)
+							publishDate DATE
 		
 			
 				
