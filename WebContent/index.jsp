@@ -10,25 +10,24 @@
 <%@ page import="javax.servlet.http.HttpSession" %>
 </head>
 <body>
-<%
-	String firstName = (String)session.getAttribute("firstName");
-%>
 	<div id="navbar">	
 	</div>
 		<div class="container">		
 			<ul class="navigationBar">
 				<div id="logoArea">
-					<li class="logo"><a href="index.html" style="font-family:logo;font-size:33px;">4CKnowledge</a></li>
+					<li class="logo"><a href="index.jsp" style="font-family:logo;font-size:33px;">4CKnowledge</a></li>
 					
 				</div>
 				<div id="navArea">
-					<li class="nav"><a class="active" href="index.html">Home</a></li>
+					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
+						<%String firstName = (String)session.getAttribute("firstName");
+						String role = (String)session.getAttribute("role");
+						if(firstName==null||firstName==""){
+							%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
+						}else if(role.equals("admin")){
+							%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
+						}%>
 					<li class="nav"><a href="findAd.php">Find a Car</a></li>
-					<%	if(firstName==null||firstName==""){
-							%><li class="nav"><a href="register.jsp">Login/Register<%=firstName%></a></li><%
-						}else{
-							%><li class="nav"><a href="register.jsp"><%=firstName%></a></li><%
-						}  %>
 					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
 					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	

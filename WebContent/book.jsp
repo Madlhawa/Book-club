@@ -18,10 +18,10 @@
 		<div class="container">		
 			<ul class="navigationBar">
 				<div id="logoArea">
-					<li class="logo"><a href="index.html" style="font-family:logo;font-size:33px;">4Cknowledge</a></li>
+					<li class="logo"><a href="index.jsp" style="font-family:logo;font-size:33px;">4Cknowledge</a></li>
 				</div>
 				<div id="navArea">
-					<li class="nav"><a class="active" href="index.html">Home</a></li>
+					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
 					<li class="nav"><a href="findAd.html">Find a Car</a></li>
 					<li class="nav"><a href="login.html">Register</a></li>
 					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
