@@ -12,7 +12,7 @@ bookClub			users			firstname varchar20
 							interest varchar(100)
 
 
-bookClub                        books
+bookClub                        books			name
 		
 			
 				

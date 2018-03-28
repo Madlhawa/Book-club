@@ -112,7 +112,7 @@
 					</tr>
 					<tr>
 						<td>Telephone</td>
-						<td><input name="telephone" required/></td>
+						<td><input name="telephone" /></td>
 					</tr>
 					<tr>
 						<td>Interest</td>
