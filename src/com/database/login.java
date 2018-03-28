@@ -48,22 +48,19 @@ public class login extends HttpServlet {
 		try {			
 			String sql = "select password, firstName from users where email='"+email+"' and password='"+pw+"'";
 			st = con.prepareStatement(sql);
-			rs = st.executeQuery(sql);
+			rs = st.executeQuery();
 			if(!rs.next()) {
 				System.out.println("wrong username and password");
-				HttpSession session=request.getSession();  
-				session.setAttribute("name","na");
 				request.setAttribute("msg", "loginFaild");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				
 			}else {
+				firstName=rs.getString("firstName");
 				System.out.println("Username and password match!");
-				while(rs.next()) {firstName=rs.getString("firstName");}
 				HttpSession session=request.getSession();  
 				session.setAttribute("email",email);
 				session.setAttribute("firstName",firstName);
 				response.sendRedirect("index.jsp"); 
-				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -10,6 +10,9 @@
 <%@ page import="javax.servlet.http.HttpSession" %>
 </head>
 <body>
+<%
+	String firstName = (String)session.getAttribute("firstName");
+%>
 	<div id="navbar">	
 	</div>
 		<div class="container">		
@@ -21,7 +24,11 @@
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.html">Home</a></li>
 					<li class="nav"><a href="findAd.php">Find a Car</a></li>
-					<li class="nav"><a href="register.jsp">Login/Register</a></li>
+					<%	if(firstName==null||firstName==""){
+							%><li class="nav"><a href="register.jsp">Login/Register<%=firstName%></a></li><%
+						}else{
+							%><li class="nav"><a href="register.jsp"><%=firstName%></a></li><%
+						}  %>
 					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
 					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
