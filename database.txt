@@ -13,6 +13,7 @@ bookClub			users			firstname varchar20
 
 
 bookClub                        books			name
+							title
 		
 			
 				
