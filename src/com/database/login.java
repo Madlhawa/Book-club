@@ -1,11 +1,22 @@
 package com.database;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+
 
 /**
  * Servlet implementation class login
@@ -29,10 +40,35 @@ public class login extends HttpServlet {
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
 		
-		if(pw.length()>=8) {
-			
+		Connection con = Dbconnect.connect();
+		PreparedStatement st = null;
+		ResultSet rs=null;
+		String firstName=null;
+		
+		try {			
+			String sql = "select password, firstName from users where email='"+email+"' and password='"+pw+"'";
+			st = con.prepareStatement(sql);
+			rs = st.executeQuery();
+			if(!rs.next()) {
+				System.out.println("wrong username and password");
+				request.setAttribute("msg", "loginFaild");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				
+			}else {
+				firstName=rs.getString("firstName");
+				System.out.println("Username and password match!");
+				HttpSession session=request.getSession();  
+				session.setAttribute("email",email);
+				session.setAttribute("firstName",firstName);
+				response.sendRedirect("index.jsp"); 
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		System.out.println(email+","+pw);
 	}
-
 }
+
+/*sending data to jsp example
+ * request.setAttribute("msg", "pwdnotmatch");
+request.getRequestDispatcher("/register.jsp").forward(request, response);*/
