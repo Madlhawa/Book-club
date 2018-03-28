@@ -10,6 +10,9 @@ bookClub			users			firstname varchar20
 							telephone int(11)
 							role varchar(20)
 							interest varchar(100)
+
+
+bookClub                        books
 		
 			
 				
