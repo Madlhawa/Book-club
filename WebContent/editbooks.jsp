@@ -64,11 +64,7 @@ ResultSet res = null;
 				
 			</div>
 			<div id="main">
-			<!--Write the Code here-->
 			
-				Write here Brooosss!!!!
-	
-			<!---------------------- -->
 			
 			<form name="bookform" method="post" action="" >
 			<%
