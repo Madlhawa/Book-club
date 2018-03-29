@@ -89,11 +89,11 @@
 					</tr>
 					<tr>
 						<td>Password</td>
-						<td><input type="password" name="pw" id="pwd" required></td>
+						<td><input type="password" name="pw" id="pwd" required/></td>
 					</tr>
 					<tr>
 						<td>Retype-Password</td>
-						<td><input type="password" name="pw1" required></td>
+						<td><input type="password" name="pw1" required/></td>
 					</tr>
 					<tr>
 						<td>E-mail</td>
@@ -101,7 +101,7 @@
 					</tr>
 					<tr>
 						<td>Date of birth</td>
-						<td><input type="date" name="dob" required></td>
+						<td><input type="date" name="dob" required/></td>
 					</tr>
 					<tr>
 						<td>Permanent address</td>
@@ -120,11 +120,18 @@
 						<td><input name="telephone" /></td>
 					</tr>
 					<tr>
-						<td>Interest</td>
-						<td><input type="text" name="interest"/></td>
+							<td>Interest</td>
+							<td><select name="interest"><option>AI</option>
+										<option>Image Processing</option>
+										<option>ART</option>
+										<option>Science</option>
+							</select></td>
 					</tr>
+					
+					
 				</table>
-				<input class="btn" type="submit" value="Submit">
+				<input class="btn" type="submit" value="Submit"/>
+
 			</form>
 		</div>
 	</div>
