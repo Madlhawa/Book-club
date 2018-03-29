@@ -21,11 +21,14 @@
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
 					<%	String firstName = (String)session.getAttribute("firstName");
-						if(firstName==null||firstName==""){
-							%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
-						}else{
-							%><li class="nav"><a href="register.jsp"><%=firstName%></a></li><%
-						}  %>
+						String role = (String)session.getAttribute("role");
+					if(firstName==null||firstName==""){
+						%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
+					}else if(role.equals("Admin")){
+						%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
+					}else{
+						%><li class="nav"><a href="profile.jsp"><%=firstName%></a></li><%
+					}%>
 					<li class="nav"><a href="findAd.php">Find a Car</a></li>
 					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>

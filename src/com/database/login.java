@@ -1,13 +1,10 @@
 package com.database;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -66,7 +63,7 @@ public class login extends HttpServlet {
 				session.setAttribute("firstName",firstName);
 				session.setAttribute("role",role);
 				
-				if(role.equals("admin")) {
+				if(role=="Admin") {
 					response.sendRedirect("adminPanel.jsp"); 
 				}else {
 					response.sendRedirect("index.jsp");

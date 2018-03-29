@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style2.css">
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
@@ -30,7 +31,6 @@
 	}
 	hr.split {
        display: block;
-       position: relative;
        padding: 0;
        margin: 8px auto;
        height: 0;
@@ -46,7 +46,7 @@
     td{
     	text-align:left;
     }
-    table{
+    #main{
     	background-color:#EBEBEB;
     }
 </style>
@@ -62,11 +62,14 @@
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
 					<%	String firstName = (String)session.getAttribute("firstName");
-						if(firstName==null||firstName==""){
-							%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
-						}else{
-							%><li class="nav"><a href="register.jsp"><%=firstName%></a></li><%
-						}  %>
+					String userRole = (String)session.getAttribute("role");
+					if(firstName==null||firstName==""){
+						%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
+					}else if(userRole.equals("Admin")){
+						%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
+					}else{
+						%><li class="nav"><a href="profile.jsp"><%=firstName%></a></li><%
+					}%>
 					<li class="nav"><a href="findAd.php">Find a Car</a></li>
 					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
@@ -106,50 +109,112 @@
 		
 		while(rs.next()){ 
 			String email=rs.getString("email");
-			String role=rs.getString("role");%>
-		<table>
-			<tr>
-				<td><p id="title"><b><%=rs.getString("firstName") %></b></p></td>
-				<td style="text-align:left;'"><p id="title"><b><%=rs.getString("lastName") %></b></p></td>
-			</tr>
-			<tr>
-				<td>Email :</td>
-				<td><b><%=email%></b></td>
-			</tr>
-			<tr >
-				<td>Mobile :</td>
-				<td style="text-align:left;"><b><%=rs.getString("mobile") %></b></td>
-				<td>Birth Date :</td>
-				<td><b><%=rs.getString("dob") %></b></td>
-			</tr>
-			<tr >
-				<td>Telephone :</td>
-				<td style="text-align:left;"><b><%=rs.getString("telephone") %></b></td>
-				<td>Role :</td>
-				<td><b><%=role%></b></td>
-			</tr>
-			<tr >
-		</table>
-		<table>
-				<td>Current Address :</td>
-				<td style="text-align:left;"><b><%=rs.getString("cAddress") %></b></td>
-			</tr>
-			<tr >
-				<td>Perm. Address :</td>
-				<td style="text-align:left;"><b><%=rs.getString("pAddress") %></b></td>
-			</tr>
-			<tr >
-				<td>Interest :</td>
-				<td style="text-align:left;"><b><%=rs.getString("interest") %></b></td>
-			</tr>
-			<tr>
-			<%if(!role.equals("cAdmin")&&!role.equals("Admin")){%>
-				<td><a href = "editMember.jsp?email=<%=email%>"><input type="button" class="bt" value="Make Admin"></td><%
+			String role=rs.getString("role");
+			
+			if(userRole.equals("cAdmin")){
+				if(role.equals("member")){%>
+				<table>
+					<tr>
+						<td><p id="title"><b><%=rs.getString("firstName") %></b></p></td>
+						<td style="text-align:left;'"><p id="title"><b><%=rs.getString("lastName") %></b></p></td>
+					</tr>
+					<tr>
+						<td>Email :</td>
+						<td><b><%=email%></b></td>
+					</tr>
+					<tr >
+						<td>Mobile :</td>
+						<td style="text-align:left;"><b><%=rs.getString("mobile") %></b></td>
+						<td>Birth Date :</td>
+						<td><b><%=rs.getString("dob") %></b></td>
+					</tr>
+					<tr >
+						<td>Telephone :</td>
+						<td style="text-align:left;"><b><%=rs.getString("telephone") %></b></td>
+						<td>Role :</td>
+						<td><b><%=role%></b></td>
+					</tr>
+					<tr >
+				</table>
+				<table>
+						<td>Current Address :</td>
+						<td style="text-align:left;"><b><%=rs.getString("cAddress") %></b></td>
+					</tr>
+					<tr >
+						<td>Perm. Address :</td>
+						<td style="text-align:left;"><b><%=rs.getString("pAddress") %></b></td>
+					</tr>
+					<tr >
+						<td>Interest :</td>
+						<td style="text-align:left;"><b><%=rs.getString("interest") %></b></td>
+					</tr>
+					<tr>
+					<%if(userRole.equals("Admin")){
+				if(role.equals("cAdmin")){
+					%><td><a href = "addRemoveAdmin?cmd=remove&email=<%=email%>"><input type="button" class="bt" value="Make Member"></td><%
+				}else if(!role.equals("cAdmin")&&!role.equals("Admin")){
+					%><td><a href = "addRemoveAdmin?cmd=make&email=<%=email%>"><input type="button" class="bt" value="Make Admin"></td><%
+				}
+				if(!role.equals("Admin")){
+					%><td><a href = "removeMember?email=<%=email%>"><input type="button" class="bt" value="Ban"></td><%
+				}
 			}%>
-				<td><a href = "banMember.jsp"><input type="button" class="bt" value="Ban"></td>
+			
 			</tr>
 		</table>  
 		<hr class="split">
+					<%} %>
+			<%} else{%>
+				<table>
+					<tr>
+						<td><p id="title"><b><%=rs.getString("firstName") %></b></p></td>
+						<td style="text-align:left;'"><p id="title"><b><%=rs.getString("lastName") %></b></p></td>
+					</tr>
+					<tr>
+						<td>Email :</td>
+						<td><b><%=email%></b></td>
+					</tr>
+					<tr >
+						<td>Mobile :</td>
+						<td style="text-align:left;"><b><%=rs.getString("mobile") %></b></td>
+						<td>Birth Date :</td>
+						<td><b><%=rs.getString("dob") %></b></td>
+					</tr>
+					<tr >
+						<td>Telephone :</td>
+						<td style="text-align:left;"><b><%=rs.getString("telephone") %></b></td>
+						<td>Role :</td>
+						<td><b><%=role%></b></td>
+					</tr>
+					<tr >
+				</table>
+				<table>
+						<td>Current Address :</td>
+						<td style="text-align:left;"><b><%=rs.getString("cAddress") %></b></td>
+					</tr>
+					<tr >
+						<td>Perm. Address :</td>
+						<td style="text-align:left;"><b><%=rs.getString("pAddress") %></b></td>
+					</tr>
+					<tr >
+						<td>Interest :</td>
+						<td style="text-align:left;"><b><%=rs.getString("interest") %></b></td>
+					</tr>
+					<tr>
+					<%if(userRole.equals("Admin")){
+				if(role.equals("cAdmin")){
+					%><td><a href = "addRemoveAdmin?cmd=remove&email=<%=email%>"><input type="button" class="bt" value="Make Member"></td><%
+				}else if(!role.equals("cAdmin")&&!role.equals("Admin")){
+					%><td><a href = "addRemoveAdmin?cmd=make&email=<%=email%>"><input type="button" class="bt" value="Make Admin"></td><%
+				}
+				if(!role.equals("Admin")){
+					%><td><a href = "removeMember?email=<%=email%>"><input type="button" class="bt" value="Ban"></td><%
+				}
+			}%>
+			</tr>
+		</table>  
+		<hr class="split">
+		<%}%>
 		<%}
     }catch(Exception e){
     	e.printStackTrace();

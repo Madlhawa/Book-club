@@ -19,7 +19,7 @@
 	}
 	.bt{
 		height:40px;	
-		width:100px;
+		width:110px;
 		background-color:#078898;
 		border:0;
 		color:white;
@@ -72,14 +72,7 @@
 			<div id="main">
 				<br>
 				<h3>Welcome to Admin Panel.</h3>
-				<hr>	<br><br>
-				<%//Saving data that recieving from the servlet to variables
-					String msg = (String)request.getAttribute("msg"); 
-			  		if(msg != null && !msg.isEmpty()){
-		  				if(msg.equals("loginFaild"))
-							out.println("<p  style=\"color:red;font-size:13px;\"> *Wrong Email or Password!.</p>");
-		  			}
-		  		%>	  		
+				<hr><br><br>	  		
 				<table>
 					<tr class="spaceUnder">
 						<td><a href = "adminMemberView.jsp"><input type="button" class="btn" value="Members"></td>
@@ -95,13 +88,25 @@
 						<td><input type="text" name="email"  required/></td>
 						<td><a href = "editBook"><input type="button" class="bt" value="Edit Book"></td>
 					</tr>
-					<tr>
+					<tr><form name="form" method="post" action="searchMember" onsubmit="return validateForm()">
 						<td>Email   :</td>
-						<td><input type="text" name="email"  required/></td>
-						<td><a href = "editMember.jsp"><input type="button" class="bt" value="Edit Member"></td>
+						<td><input type="email" name="email"  required/></td>
+						<td><input class="bt" type="submit" value="Search Member"></td>
 					</tr>
+					<tr>
+						<td><%//Saving data that recieving from the servlet to variables
+							String msg = (String)request.getAttribute("msg"); 
+			  				if(msg != null && !msg.isEmpty()){
+		  						if(msg.equals("notFound"))
+									out.println("<p  style=\"color:red;font-size:13px;\">*Email not found!</p>");
+		  						else if(msg.equals("deleted")){
+		  							out.println("<p  style=\"color:green;font-size:13px;\">Member Deleted</p>");
+		  						}
+		  			}%></td>
+					</tr></form>
 				</table>
 				</div>
+				<a href = "logout"><input type="button" class="bt" value="Logout">
 			</div>
 		</div>
 		
