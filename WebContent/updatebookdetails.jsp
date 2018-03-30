@@ -47,9 +47,13 @@
 			
 			<form name="bookform" method="post" action="updatebookdetails" >
 			
+			<label>Id</label>
+			<label><input type="text" name="id" value="<%=(String)request.getAttribute("id") %>" readonly/></label>
+			
 			
 				<table>
 				
+			
 				
 					<tr>
 						<td>Title</td>

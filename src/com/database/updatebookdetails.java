@@ -17,6 +17,7 @@ import java.util.Date;
 @WebServlet("/updatebookdetails")
 public class updatebookdetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public int ss = 0;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -29,8 +30,9 @@ public class updatebookdetails extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
-		
+	
+		String id = request.getParameter("id");
+		ss = Integer.parseInt(id);
 		
 		String title = request.getParameter("title");
 		String category = request.getParameter("category");
@@ -41,9 +43,7 @@ public class updatebookdetails extends HttpServlet {
 		String publisher = request.getParameter("publisher");
 		String publishDate = request.getParameter("publishDate");
 		
-		String id = request.getParameter("id");
 		
-		int num = Integer.parseInt(id);
 
 		Connection con = Dbconnect.connect();
 		PreparedStatement st = null;
@@ -52,14 +52,17 @@ public class updatebookdetails extends HttpServlet {
 
 			Date dateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(publishDate);
 			java.sql.Date dob = new java.sql.Date(dateFormat.getTime());
-		
+			
 			
 		
-			String sql = " update books set title = '"+title+"',category = '"+category+"',keywords = '"+keywords+"',author = '"+author+"',language = '"+language+"',country = '"+country+"',publisher = '"+publisher+"',publishDate = '"+dob+"' where bookId='"+num+"' ";
+			String sql = " UPDATE books set title = '"+title+"',category = '"+category+"', keywords = '"+keywords+"', author = '"+author+"', language = '"+language+"', country = '"+country+"', publisher = '"+publisher+"',publishDate = '"+dob+"' where bookId LIKE '"+ss+"' ";
+			
 			st = con.prepareStatement(sql);
 			st.execute();
 			System.out.println("Data updated successfully!");
 		} catch (Exception e) {
+			
+			System.out.println("Here isss " + e);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

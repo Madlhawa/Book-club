@@ -21,7 +21,7 @@ import java.sql.Statement;
 @WebServlet("/editbookdetails")
 public class editbookdetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       public int ss;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,36 +40,51 @@ public class editbookdetails extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		
-		int num = Integer.parseInt(id);
+		  ss = Integer.parseInt(id);
+		  
+		
 	
 		try {
 		
 			stat = con.createStatement();
 			
 			
-			String sql = "select * from books where bookId='"+num+"'";
+			String sql = "select * from books where bookId='"+ss+"'";
 			res = stat.executeQuery(sql);
 
 			while(res.next()){
 
-			String a = request.getParameter("title");
-			String b = request.getParameter("category");
-			String c = request.getParameter("keywords");
-			String d = request.getParameter("author");
-			String e = request.getParameter("language");
-			String f = request.getParameter("country");
-			String g = request.getParameter("publisher");
-			String h = request.getParameter("publishDate");
+//			String a = request.getParameter("title");
+//			String b = request.getParameter("category");
+//			String c = request.getParameter("keywords");
+//			String d = request.getParameter("author");
+//			String e = request.getParameter("language");
+//			String f = request.getParameter("country");
+//			String g = request.getParameter("publisher");
+//			String h = request.getParameter("publishDate");
+			
+			String a = res.getString(1);
+			String b = res.getString(2);
+			String c = res.getString(3);
+			String d = res.getString(4);
+			String e = res.getString(5);
+			String f = res.getString(6);
+			String g = res.getString(7);
+			String h = res.getString(8);
+			String i = res.getString(9); 
+			
+			
 
-
-			request.setAttribute("title",a);
-			request.setAttribute("category",b);
-			request.setAttribute("keywords",c);
-			request.setAttribute("author",d);
-			request.setAttribute("language",e);
-			request.setAttribute("country",f);
-			request.setAttribute("publisher",g);
-			request.setAttribute("publishDate",h);
+//
+			request.setAttribute("id",a);
+			request.setAttribute("title",b);		
+			request.setAttribute("category",c);
+			request.setAttribute("keywords",d);
+			request.setAttribute("author",e);
+			request.setAttribute("language",f);
+			request.setAttribute("country",g);
+			request.setAttribute("publisher",h);
+			request.setAttribute("publishDate",i);
 			
 			
 			request.getRequestDispatcher("updatebookdetails.jsp").forward(request,response);
