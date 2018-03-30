@@ -16,12 +16,20 @@
 		<div class="container">		
 			<ul class="navigationBar">
 				<div id="logoArea">
-					<li class="logo"><a href="index.html" style="font-family:logo;font-size:33px;">4Cknowledge</a></li>
+					<li class="logo"><a href="index.jsp" style="font-family:logo;font-size:33px;">4Cknowledge</a></li>
 				</div>
 				<div id="navArea">
-					<li class="nav"><a class="active" href="index.html">Home</a></li>
-					<li class="nav"><a href="findAd.html">Find a Car</a></li>
-					<li class="nav"><a href="login.html">Register</a></li>
+					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
+					<%	String firstName = (String)session.getAttribute("firstName");
+						String role = (String)session.getAttribute("role");
+					if(firstName==null||firstName==""){
+						%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
+					}else if(role.equals("Admin")){
+						%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
+					}else{
+						%><li class="nav"><a href="profile.jsp"><%=firstName%></a></li><%
+					}%>
+					<li class="nav"><a href="findAd.php">Find a Car</a></li>
 					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
 					<li class="nav"><a href="contactUs.html">Contact Us</a></li>
@@ -56,7 +64,7 @@
 				<table>
 					<tr>
 						<td>E-mail</td>
-						<td><input type="email" name="email"required/></td>
+						<td><input type="email" name="email" required/></td>
 					</tr>
 					<tr>
 						<td>Password</td>

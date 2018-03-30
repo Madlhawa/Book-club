@@ -7,6 +7,48 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="style2.css">
 <%@ page import="java.*" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<style type="text/css">
+	#title {
+		color:#078898;
+		font-size:19px;
+	}
+	tr.spaceUnder>td {
+		padding-bottom: 1em;
+	}
+	.bt{
+		height:40px;	
+		width:100px;
+		background-color:#078898;
+		border:0;
+		color:white;
+	}
+	.btn:hover,.bt:hover{
+		background-color:silver;
+		color:#078898;
+	}
+	hr.split {
+       display: block;
+       position: relative;
+       padding: 0;
+       margin: 8px auto;
+       height: 0;
+       width: 100%;
+       max-height: 0;
+       font-size: 1px;
+       line-height: 0;
+       clear: both;
+       border: none;
+       border-top: 1px solid #aaaaaa;
+       border-bottom: 1px solid #ffffff;
+    }
+    td{
+    	text-align:left;
+    }
+    table{
+    	background-color:#EBEBEB;
+    }
+</style>
 <script>
 	function validateForm()
 	{
@@ -27,9 +69,16 @@
 		}
 	}
 </script>
-<title>Register</title>
+<title>Login</title>
 </head>
 <body>
+	<%
+	String firstName = (String)session.getAttribute("firstName");
+	
+	if(firstName=="null"||firstName=="na"||firstName==""){
+		System.out.println(firstName);
+	}
+	%>
 	<div id="navbar">	
 	</div>
 		<div class="container">		
@@ -39,12 +88,14 @@
 				</div>
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
-					<%	String firstName = (String)session.getAttribute("firstName");
-						if(firstName==null||firstName==""){
-							%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
-						}else{
-							%><li class="nav"><a href="register.jsp"><%=firstName%></a></li><%
-						}  %>
+					<%	String role = (String)session.getAttribute("role");
+					if(firstName==null||firstName==""){
+						%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
+					}else if(role.equals("Admin")){
+						%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
+					}else{
+						%><li class="nav"><a href="profile.jsp"><%=firstName%></a></li><%
+					}%>
 					<li class="nav"><a href="findAd.php">Find a Car</a></li>
 					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
@@ -66,26 +117,31 @@
 			</div>
 			<div id="main">
 			<br>
-			<h3>Join with us to enjoy.</h3>
-			<hr>
-			<td style="padding-top: 1px;">&nbsp;</td>
-			<h5>Already a Member? Login here&nbsp;&nbsp;&nbsp;<a href = "login.jsp"><input type="button" id="loginbtn" value="Login"></a></h5>
-			<%/*/*Saving data that recieving from the servlet to variables
-				String msg = (String)request.getAttribute("msg"); 
-		  		if(msg != null && !msg.isEmpty()){
-		  		if(msg.equals("pwdnotmatch"))
-				out.println("<p style=\"color:red\"> *Passwords doesn't match.</p>");
-		  		}*/%>
-		  		
-			<form name="form" method="post" action="insert" onsubmit="return validateForm()">
+			<h3>Member details.</h3>
+			<hr>	
+			<br>
+			<%//Saving data that recieving from the servlet to variables
+				String userFirstName = (String)request.getAttribute("firstName");
+				String	lastName  = (String)request.getAttribute("lastName");
+				String dob = (String)request.getAttribute("dob");
+				String email = (String)request.getAttribute("email");
+				String pAddress = (String)request.getAttribute("pAddress");
+				String cAddress = (String)request.getAttribute("cAddress");
+				String mobile = (String)request.getAttribute("mobile");
+				String telephone = (String)request.getAttribute("telephone");
+				String userRole = (String)request.getAttribute("role");
+				String interest = (String)request.getAttribute("interest");
+				request.setAttribute("cemail",email);
+		  	%>	  		
+			<form name="form" method="post" action="editProfile" onsubmit="return validateForm()">
 				<table>
 					<tr>
 						<td>First Name</td>
-						<td><input type="text" name="firstName" required/></td> 
+						<td><input type="text" name="firstName" value="<%= userFirstName%>" required/></td> 
 					</tr>
 					<tr>
 						<td>Last Name</td>
-						<td><input type="text" name="lastName" required/></td>
+						<td><input type="text" name="lastName" value="<%= lastName%>" required/></td>
 					</tr>
 					<tr>
 						<td>Password</td>
@@ -97,31 +153,31 @@
 					</tr>
 					<tr>
 						<td>E-mail</td>
-						<td><input type="email" name="email"required/></td>
+						<td><%= email%></td>
 					</tr>
 					<tr>
 						<td>Date of birth</td>
-						<td><input type="date" name="dob" required></td>
+						<td><input type="date" name="dob" value="<%= dob%>" required></td>
 					</tr>
 					<tr>
 						<td>Permanent address</td>
-						<td><input type="text" name="pAddress"required/></td>
+						<td><input type="text" name="pAddress" value="<%= pAddress%>" required/></td>
 					</tr>
 					<tr>
 						<td>Current address</td>
-						<td><input type="text" name="cAddress"/></td>
+						<td><input type="text" name="cAddress" value="<%= cAddress%>" /></td>
 					</tr>
 					<tr>
 						<td>Mobile</td>
-						<td><input name="mobile" required/></td>
+						<td><input name="mobile" value="<%= mobile%>" required/></td>
 					</tr>
 					<tr>
 						<td>Telephone</td>
-						<td><input name="telephone" /></td>
+						<td><input name="telephone" value="<%= telephone%>"/></td>
 					</tr>
 					<tr>
 						<td>Interest</td>
-						<td><input type="text" name="interest"/></td>
+						<td><input type="text" name="interest" value="<%= interest%>"/></td>
 					</tr>
 				</table>
 				<input class="btn" type="submit" value="Submit">

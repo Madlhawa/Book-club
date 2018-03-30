@@ -1,13 +1,10 @@
 package com.database;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,9 +41,10 @@ public class login extends HttpServlet {
 		PreparedStatement st = null;
 		ResultSet rs=null;
 		String firstName=null;
+		String role=null;
 		
 		try {			
-			String sql = "select password, firstName from users where email='"+email+"' and password='"+pw+"'";
+			String sql = "select password, firstName, role from users where email='"+email+"' and password='"+pw+"'";
 			st = con.prepareStatement(sql);
 			rs = st.executeQuery();
 			if(!rs.next()) {
@@ -55,12 +53,21 @@ public class login extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				
 			}else {
-				firstName=rs.getString("firstName");
 				System.out.println("Username and password match!");
+				
+				firstName=rs.getString("firstName");
+				role=rs.getString("role");
+				
 				HttpSession session=request.getSession();  
 				session.setAttribute("email",email);
 				session.setAttribute("firstName",firstName);
-				response.sendRedirect("index.jsp"); 
+				session.setAttribute("role",role);
+				
+				if(role=="Admin") {
+					response.sendRedirect("adminPanel.jsp"); 
+				}else {
+					response.sendRedirect("index.jsp");
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
