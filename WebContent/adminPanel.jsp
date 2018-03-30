@@ -9,7 +9,7 @@
 <%@ page import="javax.servlet.http.HttpSession" %>
 <style type="text/css">
 	.btn{
-		margin-left:95px;
+		margin-left:15px;
 		height:80px;	
 		width:180px;
 		background-color:#078898;
@@ -30,6 +30,7 @@
 	}
 	tr.spaceUnder>td {
 		padding-bottom: 1em;
+		align:left;
 	}
 </style>
 <title>Login</title>
@@ -72,27 +73,30 @@
 			<div id="main">
 				<br>
 				<h3>Welcome to Admin Panel.</h3>
-				<hr><br><br>	  		
-				<table>
+				<hr><br><br>
+				<div >	  		
+				<table >
 					<tr class="spaceUnder">
 						<td><a href = "adminMemberView.jsp"><input type="button" class="btn" value="Members"></td>
-						<td><a href = "adminViewBooks.jsp"><input type="button" class="btn" value="Books"></td>
+						<td><a href = "viewBooks.jsp"><input type="button" class="btn" value="Books"></td>
+						<td><a href = "book.jsp"><input type="button" class="btn" value="Add Book"></td>
 						<td></td>
 					</tr>
 				</table>
+				</div>
 				<br>
 				<div style="margin-left:140px;">
 				<table>
-					<tr>
+					<tr><form name="bookform" method="post" action="editbookdetails" >
 						<td>Book ID :</td>
-						<td><input type="text" name="email"  required/></td>
-						<td><a href = "editBook"><input type="button" class="bt" value="Edit Book"></td>
-					</tr>
+						<td><input type="text" name="id" required/></td>
+						<td><input class="bt" type="submit" value="Edit Book"></td>
+					</tr></form>
 					<tr><form name="form" method="post" action="searchMember" onsubmit="return validateForm()">
 						<td>Email   :</td>
 						<td><input type="email" name="email"  required/></td>
 						<td><input class="bt" type="submit" value="Search Member"></td>
-					</tr>
+					</tr></form>
 					<tr>
 						<td><%//Saving data that recieving from the servlet to variables
 							String msg = (String)request.getAttribute("msg"); 
@@ -101,12 +105,20 @@
 									out.println("<p  style=\"color:red;font-size:13px;\">*Email not found!</p>");
 		  						else if(msg.equals("deleted")){
 		  							out.println("<p  style=\"color:green;font-size:13px;\">Member Deleted</p>");
+		  						}else if(msg.equals("bookdeleted")){
+		  							out.println("<p  style=\"color:green;font-size:13px;\">Book Removed</p>");
+		  						}else if(msg.equals("booknotFound")){
+		  							out.println("<p  style=\"color:red;font-size:13px;\">*Book not found!</p>");
+		  						}else if(msg.equals("bookinserted")){
+		  							out.println("<p  style=\"color:green;font-size:13px;\">*Book inserted!</p>");
+		  						}else if(msg.equals("bookupdated")){
+		  							out.println("<p  style=\"color:green;font-size:13px;\">*Book Details Updated!</p>");
 		  						}
 		  			}%></td>
-					</tr></form>
+					</tr>
 				</table>
 				</div>
-				<a href = "logout"><input type="button" class="bt" value="Logout">
+				<a href = "logout"><input style="margin-left:95px;" type="button" class="bt" value="Logout">
 			</div>
 		</div>
 		

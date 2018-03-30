@@ -33,6 +33,7 @@ public class updatebookdetails extends HttpServlet {
 	
 		String id = request.getParameter("id");
 		ss = Integer.parseInt(id);
+		System.out.println("POST parameter: id="+id);
 		
 		String title = request.getParameter("title");
 		String category = request.getParameter("category");
@@ -60,6 +61,8 @@ public class updatebookdetails extends HttpServlet {
 			st = con.prepareStatement(sql);
 			st.execute();
 			System.out.println("Data updated successfully!");
+			request.setAttribute("msg", "bookupdated");
+			request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
 		} catch (Exception e) {
 			
 			System.out.println("Here isss " + e);

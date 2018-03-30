@@ -7,10 +7,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style2.css">
 <title>Update book details</title>
 </head>
 <body>
-
+<style type="text/css">
+	#title {
+		color:#078898;
+		font-size:19px;
+	}
+	tr.spaceUnder>td {
+		padding-bottom: 1em;
+	}
+	.bt{
+		height:40px;	
+		width:100px;
+		background-color:#078898;
+		border:0;
+		color:white;
+	}
+	.btn:hover,.bt:hover{
+		background-color:silver;
+		color:#078898;
+	}
+	hr.split {
+       display: block;
+       position: relative;
+       padding: 0;
+       margin: 8px auto;
+       height: 0;
+       width: 100%;
+       max-height: 0;
+       font-size: 1px;
+       line-height: 0;
+       clear: both;
+       border: none;
+       border-top: 1px solid #aaaaaa;
+       border-bottom: 1px solid #ffffff;
+    }
+    td{
+    	text-align:left;
+    }
+    table{
+    	background-color:#EBEBEB;
+    }
+</style>
 
 
 <div id="navbar">	
@@ -29,32 +70,21 @@
 					<li class="nav"><a href="contactUs.html">Contact Us</a></li>
 				</div>
 			</ul>
-		
-			
 			<br><br><br>
 			<img class="header" src="header/header.jpg" alt="Norway" width="1000" height="300">
-		
 			<br>
-		
 			<div id="basicSidebar">
 				<img src="gif/giphy.gif" width="360px" style="text-align:center;"><br>
 				<img src="gif/gifs.gif" width="360px" style="text-align:center;"><br>
 				<img src="gif/gif3.gif" width="360px" style="text-align:center;">
-				
 			</div>
 			<div id="main">
-			
-			
 			<form name="bookform" method="post" action="updatebookdetails" >
-			
-			<label>Id</label>
-			<label><input type="text" name="id" value="<%=(String)request.getAttribute("id") %>" readonly/></label>
-			
-			
 				<table>
-				
-			
-				
+					<tr>
+						<td>Book ID :</td>
+						<td><label><input type="text" name="id" value="<%=(String)request.getAttribute("id") %>" readonly /></label></td>
+					</tr>
 					<tr>
 						<td>Title</td>
 						<td><input type="text" name="title" value="<%=(String)request.getAttribute("title") %>"/></td>

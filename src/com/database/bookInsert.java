@@ -48,6 +48,8 @@ public class bookInsert extends HttpServlet {
 			st = con.prepareStatement(sql);
 			st.execute();
 			System.out.println("Data inserted successfully!");
+			request.setAttribute("msg", "bookinserted");
+			request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

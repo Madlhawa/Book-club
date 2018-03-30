@@ -5,10 +5,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
-
-
-
-
+<link rel="stylesheet" type="text/css" href="style2.css">
+<style type="text/css">
+	#title {
+		color:#078898;
+		font-size:19px;
+	}
+	tr.spaceUnder>td {
+		padding-bottom: 1em;
+	}
+	.bt{
+		height:40px;	
+		width:100px;
+		background-color:#078898;
+		border:0;
+		color:white;
+	}
+	.btn:hover,.bt:hover{
+		background-color:silver;
+		color:#078898;
+	}
+	hr.split {
+       display: block;
+       position: relative;
+       padding: 0;
+       margin: 8px auto;
+       height: 0;
+       width: 100%;
+       max-height: 0;
+       font-size: 1px;
+       line-height: 0;
+       clear: both;
+       border: none;
+       border-top: 1px solid #aaaaaa;
+       border-bottom: 1px solid #ffffff;
+    }
+    td{
+    	text-align:left;
+    }
+    table{
+    	background-color:#EBEBEB;
+    }
+</style>
 <title>Books inserting Form.</title>
 </head>
 <body>
@@ -43,8 +81,9 @@
 				
 			</div>
 			<div id="main">
-		
-			
+				<br>
+				<h3>Add a Book.</h3>
+				<hr><br>
 				<form name="bookform" method="post" action="bookInsert" >
 				<table>
 				
@@ -54,7 +93,15 @@
 					</tr>
 					<tr>
 						<td>Category</td>
-						<td><input type="text" name="category" required></td>
+						<td><select name="category"><option>Science</option>
+                                        <option>Education</option>
+                                        <option>IT</option>
+                                        <option>Science fiction</option>
+                                       	<option>Drama</option>
+                                       	<option>Romance</option>
+                                       	<option>Mystery</option>
+                                       	<option>Horror</option>          	
+                            </select></td>
 					</tr>
 					<tr>
 						<td>Keywords</td>
