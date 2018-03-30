@@ -124,10 +124,14 @@
 					</tr>
 					<tr>
 							<td>Interest</td>
-							<td><select name="interest"><option>AI</option>
-										<option>Image Processing</option>
-										<option>ART</option>
-										<option>Science</option>
+							<td><select name="interest"><option>Science</option>
+                                        <option>Education</option>
+                                        <option>IT</option>
+                                        <option>Science fiction</option>
+                                       	<option>Drama</option>
+                                       	<option>Romance</option>
+                                       	<option>Mystery</option>
+                                       	<option>Horror</option>   
 							</select></td>
 					</tr>
 					

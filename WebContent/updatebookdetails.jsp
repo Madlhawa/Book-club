@@ -99,7 +99,15 @@
 					</tr>
 					<tr>
 						<td>Category</td>
-						<td><input type="text" name="category" value="<%=(String)request.getAttribute("category") %>"/></td>
+						<td><select name="category"><option>Science</option>
+                                        <option>Education</option>
+                                        <option>IT</option>
+                                        <option>Science fiction</option>
+                                       	<option>Drama</option>
+                                       	<option>Romance</option>
+                                       	<option>Mystery</option>
+                                       	<option>Horror</option>          	
+                            </select></td>
 					</tr>
 					<tr>
 						<td>Keywords</td>

@@ -178,7 +178,15 @@
 					</tr>
 					<tr>
 						<td>Interest</td>
-						<td><input type="text" name="interest" value="<%= interest%>"/></td>
+						<td><select name="interest"><option>Science</option>
+                                        <option>Education</option>
+                                        <option>IT</option>
+                                        <option>Science fiction</option>
+                                       	<option>Drama</option>
+                                       	<option>Romance</option>
+                                       	<option>Mystery</option>
+                                       	<option>Horror</option>          	
+                            </select></td>
 					</tr>
 				</table>
 				<input class="btn" type="submit" value="Submit">
