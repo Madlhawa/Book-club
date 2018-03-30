@@ -61,26 +61,25 @@
 				</div>
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
-					<%	String firstName = (String)session.getAttribute("firstName");
-					String userRole = (String)session.getAttribute("role");
-					if(firstName==null||firstName==""){
-						%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
-					}else if(userRole.equals("Admin")){
-						%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
-					}else{
-						%><li class="nav"><a href="profile.jsp"><%=firstName%></a></li><%
-					}%>
-					<li class="nav"><a href="findAd.php">Find a Car</a></li>
-					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
+						<%String firstName = (String)session.getAttribute("firstName");
+						String userRole = (String)session.getAttribute("role");
+						String email= (String)session.getAttribute("email");
+						if(firstName==null||firstName==""){
+							%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
+						}else if(userRole.equals("Admin")){
+							%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
+						}else {
+							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
+						}%>
+					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>
+					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
 				</div>
 			</ul>
 		
 			
 			<br><br><br>
 			<img class="header" src="header/header.jpg" alt="Norway" width="1000" height="300">
-		
 			<br>
 		
 			<div id="basicSidebar">
@@ -94,8 +93,6 @@
 			<h3>Member Details</h3>
 			<hr>	
 			<br>
-			<form method="post">
-	<table>
 	<%
 	Connection con = Dbconnect.connect();
 	PreparedStatement st = null;
@@ -108,9 +105,7 @@
 		System.out.println("Sql executed succesfully!");
 		
 		while(rs.next()){ 
-			String bookId=rs.getString("bookId");
-			
-			if(userRole.equals("Admin")){%>
+			String bookId=rs.getString("bookId");%>
 				<table>
 					<tr>
 						<td><p id="title"><b><%=rs.getString("title") %></b></p></td>
@@ -153,22 +148,16 @@
 					%></tr>
 					</table>  
 					<hr class="split"><%
-				}
 			}%>
 		<%}catch(Exception e){
     		e.printStackTrace();
     	}%>
-</form>
 		</div>
 	</div>
 		
-	<footer id="footer" style="float:right; width:100%;">
-		<div class="container">
-			<br><br>
-			<p class="foot" style="margin-left:350px;">Copyright  © </p><p class="foot" style="font-family:'logo';"> 4Cknowledge</p><p class="foot"> , 2018 - All Right Reserved.</p>
-		</div>
-	</footer>
+	
 </body>
+
 
 </html>
 

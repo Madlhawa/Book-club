@@ -58,5 +58,6 @@ public class insert extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 }

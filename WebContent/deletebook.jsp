@@ -21,12 +21,20 @@
 					<li class="logo"><a href="index.html" style="font-family:logo;font-size:33px;">4Cknowledge</a></li>
 				</div>
 				<div id="navArea">
-					<li class="nav"><a class="active" href="index.html">Home</a></li>
-					<li class="nav"><a href="findAd.html">Find a Car</a></li>
-					<li class="nav"><a href="login.html">Register</a></li>
-					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
+					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
+						<%String firstName = (String)session.getAttribute("firstName");
+						String role = (String)session.getAttribute("role");
+						String email= (String)session.getAttribute("email");
+						if(firstName==null||firstName==""){
+							%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
+						}else if(role.equals("Admin")){
+							%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
+						}else {
+							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
+						}%>
+					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>
+					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
 				</div>
 			</ul>
 		

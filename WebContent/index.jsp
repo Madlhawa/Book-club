@@ -30,8 +30,7 @@
 						}else {
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
 						}%>
-					<li class="nav"><a href="findAd.php">Find a Car</a></li>
-					<li class="nav"><a href="postAd.html">Post your Ad</a></li>	
+					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
 					<li class="nav"><a href="aboutUs.html">About Us</a></li>
 					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
 				</div>
@@ -45,46 +44,30 @@
 			<br>
 		
 			<div id="sidebar">
-				<h3 style="color:white;margin:5px;text-align:center;">Find the perfect car for you</h3>
-				<form name="form5" method="post" action="search.php">
+				<h3 style="color:white;margin:5px;text-align:center;">Find the book You looking for.</h3>
+				<form name="form5" method="post" action="viewBooks.jsp">
 				<table id="form">
 					<tr>
-						<td><select class="search" name="make" value="Make">
+						<td><select class="search" name="make" value="Make"><option>-Select-</option>
 						</select></td>
 					</tr>
 					<tr>
-						<td><select class="search" name="year" value="year">
+						<td><select class="search" name="year" value="year"><option>-Select-</option>
 							</select></td>
 						</tr>
 						<tr>
-							<td><select class="search" name="status">
+							<td><select class="search" name="status"><option>-Select-</option>
 							</select></td>
 						</tr>
 						<tr>
 							<td>
-								<select class="search" name="transmision">
+								<select class="search" name="transmision"><option>-Select-</option>
 								</select>
 							</td>
 						</tr>
-				
 					<tr>
 						<td>
-							<input class="formvalues" type="text" id="minMilage" name="minMilage" value="Min-Milage" >
-							to
-							<input class="formvalues" type="text" id="maxMilage" name="maxMilage" value="Max-Milage" >
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-							<input class="formvalues" type="text" id="minPrice" name="minPrice" value="Min-Price" >
-							to
-							<input class="formvalues" type="text" id="maxPrice" name="maxPrice" value="Max-Price" >
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="submit" id="findbtn" value="Find Vehicle">
+							<input type="submit" id="findbtn" value="Find Book">
 						</td>
 					</tr>
 				</table>
@@ -127,12 +110,12 @@
 			<div id="type">
 				<table style="background-color:#078898;width:1020px;height:auto;">
 					<tr>
-						<td class="cartypes"><img src="featuredBooks/aiBook.jpg"><br><b>Sedan</b></td>
-						<td class="cartypes"><img src="featuredBooks/imagePrBook.jpg"><br><b>Coupe</b></td>
-						<td class="cartypes"><img src="featuredBooks/middlewareBook.jpg"><br><b>Minivan</b></td>
-						<td class="cartypes"><img src="featuredBooks/nothernLightsBook.jpg"><br><b>Cross Over</b></td>
-						<td class="cartypes"><img src="featuredBooks/robotsBook.jpg"><br><b>SUV</b></td>
-						<td class="cartypes"><img src="featuredBooks/aBreifHistoryBook.jpg"><br><b>Electric</b></td>
+						<td class="cartypes"><a href="viewBooks.jsp"></a><img src="featuredBooks/aiBook.jpg"><br><b></b></a></td>
+						<td class="cartypes"><a href="viewBooks.jsp"><img src="featuredBooks/imagePrBook.jpg"><br><b></b></a></td>
+						<td class="cartypes"><a href="viewBooks.jsp"><img src="featuredBooks/middlewareBook.jpg"><br><b></b></a></td>
+						<td class="cartypes"><a href="viewBooks.jsp"><img src="featuredBooks/nothernLightsBook.jpg"><br><b></b></a></td>
+						<td class="cartypes"><a href="viewBooks.jsp"><img src="featuredBooks/robotsBook.jpg"><br><b></b></a></td>
+						<td class="cartypes"><a href="viewBooks.jsp"><img src="featuredBooks/aBreifHistoryBook.jpg"><br><b></b></a></td>
 					</tr>
 				</table>
 			</div>
