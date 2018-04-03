@@ -23,5 +23,37 @@ bookClub                        books			bookId int
 							publishDate DATE
 		
 			
-				
-		
+=============================================================================================================================
+
+
+Mysql server querry
+
+CREATE TABLE books (
+  bookId int IDENTITY(1,1) PRIMARY KEY,
+  title varchar(30) NOT NULL,
+  category varchar(30),
+  keywords varchar(20),
+  author varchar(50) NOT NULL,
+  language varchar(20),
+  country varchar(20),
+  publisher varchar(50) ,
+  publishDate date 
+)
+
+
+CREATE TABLE users (
+  firstName varchar(20) ,
+  lastName varchar(20) ,
+  dob date ,
+  email varchar(50) PRIMARY KEY,
+  password varchar(20) NOT NULL,
+  pAddress varchar(50) NOT NULL,
+  cAddress varchar(50) ,
+  mobile int NOT NULL,
+  telephone int,
+  role varchar(20) ,
+  interest varchar(100)
+)
+
+  INSERT INTO users (firstName, lastName, dob, email, password, pAddress, cAddress, mobile, telephone, role, interest) VALUES
+('Admin', 'Admin', '1995-05-06', 'admin@4cknowledge.com', '12345678', 'lk', 'lk', 1111, 1111, 'Admin', 'IT');
