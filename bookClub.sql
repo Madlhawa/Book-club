@@ -40,6 +40,17 @@ CREATE TABLE `books` (
   `publishDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`bookId`);
+
+--
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `bookId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2325;
+
 --
 -- Dumping data for table `books`
 --
@@ -68,39 +79,19 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`firstName`, `lastName`, `dob`, `email`, `password`, `pAddress`, `cAddress`, `mobile`, `telephone`, `role`, `interest`) VALUES
-('Kaveesha', 'Chamupathi', '1995-06-23', 'chamupate@gmail.com', '12345678', 'Ragama', 'Ragama', 776144663, 112, 'null', 'book'),
-('Pasan', 'Perera', '1994-09-06', 'pjayendra101@gmail.com', 'pasanpasan', 'Bandaragama', 'Malabe', 770813980, 112822246, 'null', 'Drinking');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `books`
---
-ALTER TABLE `books`
-  ADD PRIMARY KEY (`bookId`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Dumping data for table `users`
 --
 
---
--- AUTO_INCREMENT for table `books`
---
-ALTER TABLE `books`
-  MODIFY `bookId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2325;
-COMMIT;
+INSERT INTO `users` (`firstName`, `lastName`, `dob`, `email`, `password`, `pAddress`, `cAddress`, `mobile`, `telephone`, `role`, `interest`) VALUES
+('Madhawa', 'Manchanayake', '1995-05-06', 'madhawa242@gmail.com', '12345678', 'Malabe', 'Dunagaha', 775252085, 312246341, 'Admin', 'IT'),
+('Pasan', 'Perera', '1994-09-06', 'pjayendra101@gmail.com', 'pasanpasan', 'Bandaragama', 'Malabe', 770813980, 112822246, 'null', 'Drinking');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
