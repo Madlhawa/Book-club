@@ -29,8 +29,6 @@ public class updatebookdetails extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-	
 		String id = request.getParameter("id");
 		ss = Integer.parseInt(id);
 		System.out.println("POST parameter: id="+id);
@@ -44,39 +42,31 @@ public class updatebookdetails extends HttpServlet {
 		String publisher = request.getParameter("publisher");
 		String publishDate = request.getParameter("publishDate");
 		
-		
-
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 	
 		try {
-
 			Date dateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(publishDate);
 			java.sql.Date dob = new java.sql.Date(dateFormat.getTime());
 			
-			
-		
 			String sql = " UPDATE books set title = '"+title+"',category = '"+category+"', keywords = '"+keywords+"', author = '"+author+"', language = '"+language+"', country = '"+country+"', publisher = '"+publisher+"',publishDate = '"+dob+"' where bookId LIKE '"+ss+"' ";
 			
 			st = con.prepareStatement(sql);
 			st.execute();
+			st.close();
+			con.close();
 			System.out.println("Data updated successfully!");
 			request.setAttribute("msg", "bookupdated");
 			request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
 		} catch (Exception e) {
-			
 			System.out.println("Here isss " + e);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
-		
-		
-		
-		
-		
-		
 	}
-
 }

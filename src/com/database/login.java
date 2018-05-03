@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +40,11 @@ public class login extends HttpServlet {
 		String pw = request.getParameter("pw");
 		
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 		ResultSet rs=null;
 		String firstName=null;
@@ -62,7 +69,10 @@ public class login extends HttpServlet {
 				session.setAttribute("email",email);
 				session.setAttribute("firstName",firstName);
 				session.setAttribute("role",role);
+				session.setAttribute("logStatus","true");
 				
+				rs.close();
+				st.close();
 				if(role=="Admin") {
 					response.sendRedirect("adminPanel.jsp"); 
 				}else {
@@ -70,6 +80,12 @@ public class login extends HttpServlet {
 				}
 			}
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

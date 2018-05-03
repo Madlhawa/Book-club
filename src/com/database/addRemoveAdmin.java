@@ -37,8 +37,14 @@ public class addRemoveAdmin extends HttpServlet {
 		System.out.println("Get values: to="+to+", cmd="+cmd+", email="+email);
 		
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 		String sql = null;
+		
 		
 		if(cmd.equals("make")) {
 			sql = "update users set role='cAdmin' where email like '"+email+"'";
@@ -79,6 +85,7 @@ public class addRemoveAdmin extends HttpServlet {
 					request.setAttribute("role",rs.getString("role"));
 					request.setAttribute("interest",rs.getString("interest"));
 					
+					rs.close();
 					request.getRequestDispatcher("editMember.jsp").forward(request, response);
 				}
 				
@@ -87,7 +94,11 @@ public class addRemoveAdmin extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else {
-		response.sendRedirect("adminMemberView.jsp");
+			response.sendRedirect("adminMemberView.jsp");
 		}
+		try {
+			st.close();
+			con.close();
+		} catch (SQLException ignore) {}
 	}
 }

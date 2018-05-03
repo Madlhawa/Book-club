@@ -44,6 +44,11 @@ public class insert extends HttpServlet {
 		request.getRequestDispatcher("/register.jsp").forward(request, response);*/
 		
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 	
 		try {
@@ -55,6 +60,13 @@ public class insert extends HttpServlet {
 			st.execute();
 			System.out.println("Data inserted successfully!");
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			st.close();
+			con.close();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

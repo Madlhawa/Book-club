@@ -3,7 +3,7 @@ package com.database;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +32,11 @@ public class deletebook extends HttpServlet {
 		
 
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 	
 		try {
@@ -45,16 +50,10 @@ public class deletebook extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		try {
+			st.close();
+			con.close();
+		} catch (SQLException ignore) {}
 	}
 
 }

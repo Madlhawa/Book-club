@@ -38,6 +38,11 @@ public class bookInsert extends HttpServlet {
 		
 
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 	
 		try {
@@ -54,8 +59,10 @@ public class bookInsert extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
+		try {
+			st.close();
+			con.close();
+		} catch (SQLException ignore) {}	
 	}
 
 }

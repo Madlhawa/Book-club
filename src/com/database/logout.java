@@ -33,9 +33,10 @@ public class logout extends HttpServlet {
 		session.setAttribute("email","na");
 		session.setAttribute("firstName","na");
 		session.setAttribute("role","na");
+		session.setAttribute("logStatus","false");
 		
 		request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
 	}
-
+	
 }

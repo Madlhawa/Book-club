@@ -39,7 +39,9 @@
 				</div>
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
-						<%String firstName = (String)session.getAttribute("firstName");
+						<%
+						response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+						String firstName = (String)session.getAttribute("firstName");
 						String role = (String)session.getAttribute("role");
 						String email= (String)session.getAttribute("email");
 						if(firstName==null||firstName==""){
@@ -50,8 +52,8 @@
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
 						}%>
 					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
-					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
+					<li class="nav"><a href="aboutUs.jsp">About Us</a></li>
+					<li class="nav"><a href="contactUs.jsp">Contact Us</a></li>	
 				</div>
 			</ul>
 		

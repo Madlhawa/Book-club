@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="style2.css">
 <%@ page import="java.*" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
-<title>Login</title>
+<title>About Us</title>
 </head>
 <body>
 	<div id="navbar">	
@@ -31,8 +31,8 @@
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
 						}%>
 					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
-					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
+					<li class="nav"><a href="aboutUs.jsp">About Us</a></li>
+					<li class="nav"><a href="contactUs.jsp">Contact Us</a></li>	
 				</div>
 			</ul>
 		

@@ -34,6 +34,11 @@ public class searchMember extends HttpServlet {
 		String email=request.getParameter("email");
 		System.out.println("GEt values: "+to+","+email);
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		
@@ -103,6 +108,8 @@ public class searchMember extends HttpServlet {
 			System.out.println("Sql executed succesfully!");
 
 			if(!rs.next()) {
+				rs.close();
+				st.close();
 				System.out.println("wrong username and password");
 				request.setAttribute("msg", "notFound");
 				request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
@@ -120,9 +127,17 @@ public class searchMember extends HttpServlet {
 				request.setAttribute("role",rs.getString("role"));
 				request.setAttribute("interest",rs.getString("interest"));
 				
+				rs.close();
+				st.close();
 				request.getRequestDispatcher("editMember.jsp").forward(request, response);
 			}
 			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

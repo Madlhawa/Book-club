@@ -3,6 +3,7 @@ package com.database;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,12 +33,18 @@ public class removeMember extends HttpServlet {
 		String email= request.getParameter("email");
 		System.out.println("get value: email="+email);
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
 	
 		try {
 			String sql = "DELETE FROM users WHERE email='"+email+"'";
 			st = con.prepareStatement(sql);
 			st.execute();
+			st.close();
 			System.out.println("Member deleted successfully!");
 			request.setAttribute("msg", "deleted");
 			request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
@@ -46,6 +53,12 @@ public class removeMember extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("msg", "notFound");
 			request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

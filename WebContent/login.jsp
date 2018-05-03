@@ -11,6 +11,9 @@
 <title>Login</title>
 </head>
 <body>
+<script>
+	Page.ClientScript.RegisterStartupScript(this.GetType(),"clearHistory","ClearHistory();",true);
+</script>
 	<div id="navbar">	
 	</div>
 		<div class="container">		
@@ -31,8 +34,8 @@
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
 						}%>
 					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
-					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
+					<li class="nav"><a href="aboutUs.jsp">About Us</a></li>
+					<li class="nav"><a href="contactUs.jsp">Contact Us</a></li>	
 				</div>
 			</ul>
 		
@@ -43,9 +46,13 @@
 			<br>
 		
 			<div id="basicSidebar">
-				<img src="gif/giphy.gif" width="360px" style="text-align:center;"><br>
+				
+				<img src="gif/gif3.gif" width="360px" style="text-align:center;">
+				<!-- 
 				<img src="gif/gifs.gif" width="360px" style="text-align:center;"><br>
 				<img src="gif/gif3.gif" width="360px" style="text-align:center;">
+				<img src="gif/giphy.gif" width="360px" style="text-align:center;"><br>
+				-->
 				
 			</div>
 			<div id="main">

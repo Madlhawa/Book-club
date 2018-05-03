@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <%@ page import="java.*" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="com.database.Dbconnect" %>
 <style type="text/css">
 	.btn{
 		margin-left:15px;
@@ -33,7 +35,17 @@
 		align:left;
 	}
 </style>
-<title>Login</title>
+<script>
+	function validateForm()
+	{
+		if (confirm("Are you sure?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
+<title>Admin Panel</title>
 </head>
 <body>
 	<div id="navbar">	
@@ -45,10 +57,17 @@
 				</div>
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
-						<%String firstName = (String)session.getAttribute("firstName");
+						<%
+						//this line stop the browser from caching, this page, which leads to back button issue after logout 
+						response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+						String firstName = (String)session.getAttribute("firstName");
 						String role = (String)session.getAttribute("role");
 						String email= (String)session.getAttribute("email");
-						if(firstName==null||firstName==""){
+						String logStatus = (String)session.getAttribute("logStatus");
+						
+						if(logStatus=="false"||logStatus==""||logStatus==null){
+							response.sendRedirect("login.jsp");
+						}else if(firstName==null||firstName==""){
 							%><li class="nav"><a href="register.jsp">Login/Register</a></li><%
 						}else if(role.equals("Admin")){
 							%><li class="nav"><a href="adminPanel.jsp"><%=firstName%></a></li><%
@@ -56,8 +75,8 @@
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
 						}%>
 					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
-					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
+					<li class="nav"><a href="aboutUs.jsp">About Us</a></li>
+					<li class="nav"><a href="contactUs.jsp">Contact Us</a></li>	
 				</div>
 			</ul>
 		
@@ -116,13 +135,65 @@
 		  							out.println("<p  style=\"color:green;font-size:13px;\">*Book inserted!</p>");
 		  						}else if(msg.equals("bookupdated")){
 		  							out.println("<p  style=\"color:green;font-size:13px;\">*Book Details Updated!</p>");
+		  						}else if(msg.equals("slotupdated")){
+		  							out.println("<p  style=\"color:green;font-size:13px;\">*Book Slot Updated!</p>");
 		  						}
 		  			}%></td>
 					</tr>
 				</table>
 				</div>
-				<a href = "logout"><input style="margin-left:95px;" type="button" class="bt" value="Logout">
+				
+				<p><b>Edit Featured Books</b></p>
+				<div style="margin-left:140px;">
+				<form name="bookform" method="post" action="editSlot" >
+				<table>
+					<tr>
+						<td style="text-align:left">Book ID:</td>
+						<td><select style="width:158px" name="id">
+						<%Connection con = Dbconnect.connect();
+						PreparedStatement st = null;
+						ResultSet rs = null;
+						try {
+								String sql = "select bookId, title from books";
+								st = con.prepareStatement(sql);
+								rs=st.executeQuery();
+								System.out.println("Sql executed succesfully!");
+				
+								int bookId;
+								while(rs.next()){ 
+									bookId=Integer.parseInt(rs.getString("bookId"));%>
+									<option value="<%=bookId%>"><%=rs.getString("title")%></option><%
+									System.out.println("retrive values "+bookId+", "+rs.getString("title")+".");
+								}
+							}catch(Exception e){
+								e.printStackTrace();
+							}
+							rs.close();
+							st.close();
+							con.close();%>
+							</select></td>
+					</tr>
+					<tr>
+						<td style="text-align:left">Slot No :</td>
+						<td><select style="width:158px" name="slot" required>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+							</select></td>
+						<td style="text-align:right;width:100px"><input class="bt" type="submit" value="Edit Slot"></td>
+					</tr>
+				</table>
+				</form>
+				</div>
+				<br>
+				<form name="logoutform" method="get" action="logout" onsubmit="return validateForm()" >
+					<input style="margin-left:95px;" type="submit" class="bt" value="Logout">
+				</form>
 			</div>
+			
 		</div>
 		
 		<footer id="footer" style="float:right; width:100%;">

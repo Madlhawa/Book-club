@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -25,8 +26,14 @@ public class editbookdetails extends HttpServlet {
        
        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
    		Statement stat = null;
    		ResultSet res = null;
+   		
    		
    		String id = request.getParameter("id");
    		ss = Integer.parseInt(id);
@@ -63,30 +70,31 @@ public class editbookdetails extends HttpServlet {
    			// TODO Auto-generated catch block
    			e.printStackTrace();
    		}
+   		try {
+   			res.close();
+   			stat.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
    	}
    
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		Connection con = Dbconnect.connect();
 		Statement stat = null;
 		ResultSet res = null;
 		
 		String id = request.getParameter("id");
-		
-		  ss = Integer.parseInt(id);
+		ss = Integer.parseInt(id);
 		  
 		
 	
 		try {
-		
 			stat = con.createStatement();
-			
-			
 			String sql = "select * from books where bookId='"+ss+"'";
 			res = stat.executeQuery(sql);
 
@@ -111,9 +119,6 @@ public class editbookdetails extends HttpServlet {
 			String h = res.getString(8);
 			String i = res.getString(9); 
 			
-			
-
-//
 			request.setAttribute("id",a);
 			request.setAttribute("title",b);		
 			request.setAttribute("category",c);
@@ -124,23 +129,20 @@ public class editbookdetails extends HttpServlet {
 			request.setAttribute("publisher",h);
 			request.setAttribute("publishDate",i);
 			
-			
 			request.getRequestDispatcher("updatebookdetails.jsp").forward(request,response);
 			}
-
-						
-
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
-		
-		
-		
-		
+		try {
+   			res.close();
+   			stat.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

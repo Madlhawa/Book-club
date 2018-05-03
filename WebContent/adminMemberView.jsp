@@ -50,7 +50,7 @@
     	background-color:#EBEBEB;
     }
 </style>
-<title>Insert title here</title>
+<title>Members</title>
 </head>
 <div id="navbar">	
 	</div>
@@ -61,7 +61,9 @@
 				</div>
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
-						<%String firstName = (String)session.getAttribute("firstName");
+						<%
+						response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+						String firstName = (String)session.getAttribute("firstName");
 						String userRole = (String)session.getAttribute("role");
 						String Cemail= (String)session.getAttribute("email");
 						if(firstName==null||firstName==""){
@@ -72,8 +74,8 @@
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= Cemail%>"><%=firstName%></a></li><%
 						}%>
 					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
-					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
+					<li class="nav"><a href="aboutUs.jsp">About Us</a></li>
+					<li class="nav"><a href="contactUs.jsp">Contact Us</a></li>	
 				</div>
 			</ul>
 		
@@ -100,6 +102,10 @@
 	Connection con = Dbconnect.connect();
 	PreparedStatement st = null;
 	ResultSet rs = null;
+	
+	if(con==null){%>
+		<h4 style="color:red;">Sorry. Unable to connect to the database. Try again later. </h4>
+ 	<%}
 
 	try {
 		String sql = "select * from users";

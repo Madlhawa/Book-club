@@ -49,12 +49,16 @@
     	background-color:#EBEBEB;
     }
 </style>
-<title>Login</title>
+<title>User Profile</title>
 </head>
 <body>
 	<%
+	response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+	String logStatus = (String)session.getAttribute("logStatus");
+	if(logStatus=="false"||logStatus==""||logStatus==null){
+		response.sendRedirect("login.jsp");
+	}else{
 	String firstName = (String)session.getAttribute("firstName");
-	
 	if(firstName=="null"||firstName=="na"||firstName==""){
 		System.out.println(firstName);
 	}
@@ -78,8 +82,8 @@
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= Cemail%>"><%=firstName%></a></li><%
 						}%>
 					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
-					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
+					<li class="nav"><a href="aboutUs.jsp">About Us</a></li>
+					<li class="nav"><a href="contactUs.jsp">Contact Us</a></li>	
 				</div>
 			</ul>
 		
@@ -174,5 +178,6 @@
 			<p class="foot" style="margin-left:350px;">Copyright  © </p><p class="foot" style="font-family:'logo';"> 4Cknowledge</p><p class="foot"> , 2018 - All Right Reserved.</p>
 		</div>
 	</footer>
+	<%} %>
 </body>
 </html>

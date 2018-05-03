@@ -3,6 +3,7 @@ package com.database;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -49,7 +50,13 @@ public class editProfile extends HttpServlet {
 		request.getRequestDispatcher("/register.jsp").forward(request, response);*/
 		
 		Connection con = Dbconnect.connect();
+		if(con==null){
+			request.setAttribute("msg", "dbError");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
 		PreparedStatement st = null;
+		
 	
 		try {
 			Date dateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(dateFromForm);
@@ -63,6 +70,10 @@ public class editProfile extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			st.close();
+			con.close();
+		} catch (SQLException ignore) {}
 		response.sendRedirect("searchMember?to=userProfileUpdated&email="+email);
 	}
 }

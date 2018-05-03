@@ -15,6 +15,9 @@
 		color:#078898;
 		font-size:19px;
 	}
+	table{
+		margin-left:50px;
+	}
 	tr.spaceUnder>td {
 		padding-bottom: 1em;
 	}
@@ -50,7 +53,7 @@
     	background-color:#EBEBEB;
     }
 </style>
-<title>Insert title here</title>
+<title>Book Details</title>
 </head>
 <div id="navbar">	
 	</div>
@@ -61,7 +64,9 @@
 				</div>
 				<div id="navArea">
 					<li class="nav"><a class="active" href="index.jsp">Home</a></li>
-						<%String firstName = (String)session.getAttribute("firstName");
+						<%
+						response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+						String firstName = (String)session.getAttribute("firstName");
 						String userRole = (String)session.getAttribute("role");
 						String email= (String)session.getAttribute("email");
 						if(firstName==null||firstName==""){
@@ -72,8 +77,8 @@
 							%><li class="nav"><a href="searchMember?to=userProfile&email=<%= email%>"><%=firstName%></a></li><%
 						}%>
 					<li class="nav"><a href="viewBooks.jsp">Books</a></li>
-					<li class="nav"><a href="aboutUs.html">About Us</a></li>
-					<li class="nav"><a href="contactUs.html">Contact Us</a></li>	
+					<li class="nav"><a href="aboutUs.jsp">About Us</a></li>
+					<li class="nav"><a href="contactUs.jsp">Contact Us</a></li>	
 				</div>
 			</ul>
 		
@@ -90,14 +95,18 @@
 			</div>
 			<div id="main">
 			<br>
-			<h3>Member Details</h3>
+			<h3>Book Details</h3>
 			<hr>	
 			<br>
 	<%
 	Connection con = Dbconnect.connect();
 	PreparedStatement st = null;
 	ResultSet rs = null;
-
+	
+	if(con==null){%>
+		<h4 style="color:red;">Sorry. Unable to connect to the database. Try again later. </h4>
+	<%}
+	
 	try {
 		String sql = "select * from books";
 		st = con.prepareStatement(sql);
@@ -106,17 +115,19 @@
 		
 		while(rs.next()){ 
 			String bookId=rs.getString("bookId");%>
-				<table>
+				<table >
 					<tr>
 						<td><p id="title"><b><%=rs.getString("title") %></b></p></td>
 					</tr>
+				</table>
+				<table >
 					<tr>
 						<td>Book ID :</td>
 						<td><b><%=bookId%></b></td>
 					</tr>
 					<tr >
-						<td>Category :</td>
-						<td style="text-align:left;"><b><%=rs.getString("category") %></b></td>
+						<td >Category :</td>
+						<td style="margin-left:0px;"><b><%=rs.getString("category") %></b></td>
 						<td>Author :</td>
 						<td><b><%=rs.getString("author") %></b></td>
 					</tr>
@@ -124,7 +135,7 @@
 						<td>language :</td>
 						<td style="text-align:left;"><b><%=rs.getString("language") %></b></td>
 						<td>Country :</td>
-						<td><b><%=rs.getString("country")%></b></td>
+						<td style="margin-left:0px;"><b><%=rs.getString("country")%></b></td>
 					</tr>
 					<tr >
 					</tr>
