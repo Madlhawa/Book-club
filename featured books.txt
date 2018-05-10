@@ -1,0 +1,148 @@
+BookName - 
+AI Its nature and future
+
+Author
+Margaret A. Boden
+
+Language
+English
+
+country
+uk
+
+publisher
+OXFORD University Press
+
+date
+26 May 2016
+
+key words
+AI future  Artificial Neural Networks
+
+--------------------------------------------------------------------------------
+
+BookName - 
+Seismic Data Interpretation using Digital Image Processing
+
+Author
+Abdullatif A. Al-Shuhail, Saleh A. Al-Dossary, Wail A. Mousa
+
+Language
+English
+
+country
+saudi arabiya
+
+publisher
+Wiley
+
+date
+June 5, 2017
+
+key words
+ Image Processing, Seismic Data, 
+
+--------------------------------------------------------------------------------
+
+BookName - 
+Middleware and Cloud Computing
+
+Author
+Frank Munz
+
+Language
+English
+
+country
+Australia
+
+publisher
+Munz & More Press
+
+date
+April 28, 2012
+
+key words
+Cloud Computing, Oracle Middleware, Amazon Web Services
+
+--------------------------------------------------------------------------------
+
+
+BookName - 
+Northern Lights: His Dark Materials 1
+
+catagory
+sci fi
+
+Author
+Philip Pullman
+
+Language
+English
+
+country
+UK
+
+publisher
+Scholastic
+
+date
+3 Mar. 2011
+
+key words
+Cloud Computing, Oracle Middleware, Amazon Web Services
+
+--------------------------------------------------------------------------------
+
+
+BookName - 
+The Rise of the Robots: Technology and the Threat of Mass Unemployment
+
+catagory
+technology
+
+Author
+Martin Ford
+
+Language
+English
+
+country
+American
+
+publisher
+Oneworld Publications
+
+date
+2 Jun. 2016
+
+key words
+Cloud Computing, Oracle Middleware, Amazon Web Services
+
+--------------------------------------------------------------------------------
+
+
+BookName - 
+A BRIEF HISTORY OF TIME
+From Big Bang To Black Holes
+
+catagory
+science
+
+Author
+Stephen Hawking
+
+Language
+English
+
+country
+uk
+
+publisher
+Bantam Books Ltd
+
+date
+1989
+
+key words
+Cloud Computing, Oracle Middleware, Amazon Web Services
